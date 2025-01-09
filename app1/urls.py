@@ -1,6 +1,10 @@
-from django.urls import path
+from django.urls import path,include
 from app1.views import *
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('api/',EmpView,basename='show-data')
 
 urlpatterns = [
-    path('',EmpView.as_view(),name='show'),
+    path('',include(router.urls),name='show'),
 ]
